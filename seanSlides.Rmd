@@ -1,0 +1,29 @@
+---
+title: "Making a Map"
+author: "Sean Eskew"
+date: "9/3/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+## This is a Slideshow
+### I made it
+Yeehaw
+
+## This is a Map
+```{r}
+library(crimedata)
+library(leaflet)
+
+df <- homicides15
+
+df %>% 
+  leaflet() %>%
+  addTiles %>%
+  addMarkers(popup = paste('<b>City:</b>', df$city_name, '<br>',
+                           '<b>Offense:</b>', df$offense_type, '<br>',
+                           '<b>Date:</b>', df$date_single), clusterOptions = markerClusterOptions())
+```
+
